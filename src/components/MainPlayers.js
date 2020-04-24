@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { removeMainPlayer } from '../redux/actions';
 
 const MainPlayers = ({ mainPlayers, removeMainPlayer }) => (
   <section>
@@ -32,11 +33,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeMainPlayer(player) {
-    dispatch({
-      type: 'REMOVE_MAIN_PLAYER',
-      player,
-    });
+  removeMainPlayer: (player) => {
+    dispatch(removeMainPlayer({ player }));
   },
 });
 

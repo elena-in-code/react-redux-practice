@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Players.css';
+import { addMainPlayer, addSecondaryPlayer } from '../redux/actions';
 
 const Players = ({ players, addMainPlayer, addSecondaryPlayer }) => {
   return (
@@ -41,17 +42,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addMainPlayer(player) {
-    dispatch({
-      type: 'ADD_MAIN_PLAYER',
-      player,
-    });
+  addMainPlayer: (player) => {
+    dispatch(addMainPlayer({ player }));
   },
-  addSecondaryPlayer(player) {
-    dispatch({
-      type: 'ADD_SECONDARY_PLAYER',
-      player,
-    });
+  addSecondaryPlayer: (player) => {
+    dispatch(addSecondaryPlayer({ player }));
   },
 });
 
