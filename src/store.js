@@ -73,42 +73,42 @@ const initialState = {
 };
 
 const reducerTeamManager = (state = initialState, action) => {
-  if (action.type === 'ADD_MAIN_PLAYER') {
-    return {
-      ...state,
-      mainPlayers: state.mainPlayers.concat(action.player),
-      players: state.players.filter((player) => player.id !== action.player.id),
-    };
+  switch (action.type) {
+    case 'ADD_MAIN_PLAYER':
+      return {
+        ...state,
+        mainPlayers: state.mainPlayers.concat(action.player),
+        players: state.players.filter(
+          (player) => player.id !== action.player.id
+        ),
+      };
+    case 'ADD_SECONDARY_PLAYER':
+      return {
+        ...state,
+        secondaryPlayers: state.secondaryPlayers.concat(action.player),
+        players: state.players.filter(
+          (player) => player.id !== action.player.id
+        ),
+      };
+    case 'REMOVE_MAIN_PLAYER':
+      return {
+        ...state,
+        mainPlayers: state.mainPlayers.filter(
+          (mainPlayer) => mainPlayer.id !== action.player.id
+        ),
+        players: state.players.concat(action.player),
+      };
+    case 'REMOVE_SECONDARY_PLAYER':
+      return {
+        ...state,
+        secondaryPlayers: state.secondaryPlayers.filter(
+          (secondaryPlayer) => secondaryPlayer.id !== action.player.id
+        ),
+        players: state.players.concat(action.player),
+      };
+    default:
+      return state;
   }
-  if (action.type === 'ADD_SECONDARY_PLAYER') {
-    return {
-      ...state,
-      secondaryPlayers: state.secondaryPlayers.concat(action.player),
-      players: state.players.filter((player) => player.id !== action.player.id),
-    };
-  }
-
-  if (action.type === 'REMOVE_MAIN_PLAYER') {
-    return {
-      ...state,
-      mainPlayers: state.mainPlayers.filter(
-        (mainPlayer) => mainPlayer.id !== action.player.id
-      ),
-      players: state.players.concat(action.player),
-    };
-  }
-
-  if (action.type === 'REMOVE_SECONDARY_PLAYER') {
-    return {
-      ...state,
-      secondaryPlayers: state.secondaryPlayers.filter(
-        (secondaryPlayer) => secondaryPlayer.id !== action.player.id
-      ),
-      players: state.players.concat(action.player),
-    };
-  }
-
-  return state;
 };
 
 export default createStore(reducerTeamManager);
