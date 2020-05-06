@@ -1,5 +1,3 @@
-import { createStore } from 'redux';
-
 const initialState = {
   players: [
     {
@@ -72,7 +70,7 @@ const initialState = {
   secondaryPlayers: [],
 };
 
-const reducerTeamManager = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_MAIN_PLAYER':
       return {
@@ -111,4 +109,4 @@ const reducerTeamManager = (state = initialState, action) => {
   }
 };
 
-export default createStore(reducerTeamManager);
+export const teamManager = (state) => state;

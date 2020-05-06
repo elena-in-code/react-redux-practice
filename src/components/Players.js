@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Players.css';
-import { addMainPlayer, addSecondaryPlayer } from '../redux/actions';
+import { addMainPlayer, addSecondaryPlayer } from '../store/actions';
 
 const Players = ({ players, addMainPlayer, addSecondaryPlayer }) => {
   return (
@@ -37,9 +37,12 @@ const Players = ({ players, addMainPlayer, addSecondaryPlayer }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  players: state.players,
-});
+const mapStateToProps = (state) => {
+  const { players } = state.reducerTeamManager;
+  return {
+    players,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   addMainPlayer: (player) => {
